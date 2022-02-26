@@ -1,0 +1,34 @@
+<div class="container device">
+  <%= render 'layouts/shared/error', obj: @user %>
+  <div class="device_frame">
+    <p class="my-4">新しいアカウントを作成</p>
+    <div class="device_inner">
+      <%= form_tag(users_path, {method: :post}) do %> 
+        <input type="hidden" name="authenticity_token" value="n9ucSbnvWuA+MGtY8wUM5Vwcmk0AHDWCh00jAtovgf94yUl0oL6XBhex+oVVQE+IeLUSpdMohxbi4xU++iZ6tg==">
+        <div class="field form-row">
+          <div class="col-2 required-b pt-2"></div>
+          <input autocomplete="name" class="form-control col-10 px-2" placeholder="ユーザー名" type="text" name="user[name]" id="user_name">
+        </div>
+        <div class="field form-row">
+          <div class="col-2 required-b pt-2"></div>
+          <input autocomplete="email" class="form-control col-10 px-2" placeholder="メールアドレス" type="email" value="" name="user[email]" id="user_email">
+        </div>
+        <div class="field form-row">
+          <div class="col-2 required-b pt-2"></div>
+          <input autocomplete="new-password" class="form-control col-10 px-2" placeholder="パスワード" type="password" name="user[password]" id="user_password">
+        </div>
+        <div class="field form-row">
+          <div class="col-2 required-b pt-2"></div>
+          <input autocomplete="new-password" class="form-control col-10 px-2" placeholder="パスワード確認" type="password" name="user[password_confirmation]" id="user_password_confirmation">
+        </div>
+        <div class="actions">
+          <input type="submit" name="commit" value="新しいアカウントを作成" class="form-control btn-primary my-4 " data-disable-with="新しいアカウントを作成">
+        </div>
+      <% end %>        
+      <p>
+        <%= link_to("すでにアカウントをお持ちの方はログイン", "/users/sign_in") %>
+      </p>
+      <br>
+    </div>
+  </div>
+</div>
