@@ -6,11 +6,11 @@
         <div class="form-fream">
           <div class="form-area">
             <p class="form-area-title mb-4">Potepan Shareでまだ体験したことのない旅をしよう</p>
-            <form action="https://presite-potepancamp-rails-02.herokuapp.com/rooms/search" accept-charset="UTF-8" method="get">
+            <%= form_tag(rooms_search_path, method: :get, local: true) do %>
               <label for="___">エリア</label>
-              <input type="text" name="area" id="area" value="" class="form-control mb-4" placeholder="東京">
+              <input type="text" name="search_area" id="area" value="" class="form-control mb-4" placeholder="東京">
               <input type="submit" name="commit" value="探す" class="form-control btn-primary mb-4" data-disable-with="探す">
-            </form>                    
+            <% end %>                    
           </div>
         </div>
       </div>
@@ -22,22 +22,30 @@
       <div class="row">
         <div class="panel-item col-lg-3 col-6">
           <span>東京</span>
-          <a href="https://presite-potepancamp-rails-02.herokuapp.com/rooms/search?area=%E6%9D%B1%E4%BA%AC"><img class="panel-image" src="/assets/img_tokyo.jpg"></a>
+          <a href="http://localhost:3000/rooms/search?search_area=%E6%9D%B1%E4%BA%AC&search_keyword=" >
+            <img class="panel-image" src="/assets/img_tokyo.jpg">
+          </a>
           <div class="shadow"></div>
         </div>
         <div class="panel-item col-lg-3 col-6">
           <span>大阪</span>
-          <a href="https://presite-potepancamp-rails-02.herokuapp.com/rooms/search?area=%E5%A4%A7%E9%98%AA"><img class="panel-image" src="/assets/img_osaka.jpg"></a>
+          <a href="http://localhost:3000/rooms/search?search_area=%E5%A4%A7%E9%98%AA&search_keyword=">
+            <img class="panel-image" src="/assets/img_osaka.jpg">
+          </a>
           <div class="shadow"></div>
         </div>
           <div class="panel-item col-lg-3 col-6">
           <span>京都</span>
-          <a href="https://presite-potepancamp-rails-02.herokuapp.com/rooms/search?area=%E4%BA%AC%E9%83%BD"><img class="panel-image shadow" src="/assets/img_kyoto.jpg"></a>
+          <a href="http://localhost:3000/rooms/search?search_area=%E4%BA%AC%E9%83%BD%E5%BA%9C&search_keyword=">
+            <img class="panel-image shadow" src="/assets/img_kyoto.jpg">
+          </a>
           <div class="shadow"></div>
         </div>
         <div class="panel-item col-lg-3 col-6">
           <span>札幌</span>
-          <a href="https://presite-potepancamp-rails-02.herokuapp.com/rooms/search?area=%E6%9C%AD%E5%B9%8C"><img class="panel-image" src="/assets/img_sapporo.jpg"></a>
+          <a href="http://localhost:3000/rooms/search?search_area=%E6%9C%AD%E5%B9%8C&search_keyword=">
+            <img class="panel-image" src="/assets/img_sapporo.jpg">
+          </a>
           <div class="shadow"></div>
         </div>
       </div>

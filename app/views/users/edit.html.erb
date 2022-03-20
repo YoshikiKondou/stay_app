@@ -1,14 +1,18 @@
 <div class="container device">
   <div class="device_frame">
     <h2 class="mb-3">アカウント編集</h2>
+    <%= render 'layouts/shared/error', obj: @user %>
+    <% if flash[:failure] %>
+      <p class="failure"><%= flash[:failure] %></p>
+    <% end %>
     <div class="device_inner">
-      <%= form_tag(users_path, {method: :put}) do %>
+      <%= form_tag(user_path, {method: :patch, key: 'edit'}) do %>
         <input type="hidden" name="_method" value="put">
         <input type="hidden" name="authenticity_token" value="SvgHMiAaeO2QxR2q3//Rler+6kFjpwLHufq0ftx4Ggitw0VX7e6pkZOh61xde/SN/V1pOPe+DryHOrg6+MDWdw==">
         <div class="field">
           <div class="form-group">
             <label for="user_email">メールアドレス</label>
-            <input autofocus="autofocus" autocomplete="email" class="form-control" placeholder="メールアドレスを入力してください" type="email" value="<%= @user.email %> name="user[email]" id="user_email">
+            <input autofocus="autofocus" autocomplete="email" class="form-control" placeholder="メールアドレスを入力してください" type="email"  name="user[email]" id="user_email">
           </div>
         </div>
         <div class="field">

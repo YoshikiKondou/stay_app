@@ -1,0 +1,28 @@
+<div class="container reservations-new">
+  <div class="row">
+    <div class="col-6 offset-3">
+      <div class="reservations-new-nav">
+        <h4 class="reservations-new-check-content">予約内容確認</h4>
+        <h5 class="price-icon">¥<%= @room.price %>/日</h5>
+        <div class="reservations-new-date-select">
+          <%= form_tag(reservations_path, method: :post) do %>
+            <input type="hidden" name="authenticity_token" value="ma6qoeMfV2UhEQWX4K9CnB7LULpfTuhJKuK2V1QdP1O5jJ1H1t3LTds61l4k2X8WhRCNFe7uru11MjzGpNY/yQ==">
+            <input type="hidden" value="<%= @room.id %>" name="reservation[room_id]" id="reservation_room_id">
+            <input type="hidden" value="<%= @user.id %>" name="reservation[user_id]" id="reservation_user_id">
+            <label for="start_date">開始日</label>
+            <input class="form-control mb-4" readonly="readonly" type="text"  value="<%= @reservation.start_at.to_date %>" name="reservation[start_at]" id="reservation_start_at">
+            <label for="end_date">終了日</label>
+            <input class="form-control mb-4" readonly="readonly" type="text" value="<%= @reservation.end_at.to_date %>" name="reservation[end_at]" id="reservation_end_at">
+            <h6 class="reservations-new-check-content">使用日数 : <%= @days %>日</h6>
+            <h6 class="reservations-new-check-content">人数 : <%= @room.person_num %>人</h6>
+            <label for="total_amount">合計金額</label>
+            <input class="form-control mb-4" readonly="readonly" type="text" value="<%= @total %>" name="reservation[total_price]" id="reservation_total_amount">
+            <p class="reservations-new-check-content">上記内容でよろしければ「予約を確定」を押してください</p>
+            <input type="submit" name="commit" value="予約を確定" class="btn btn-primary form-control my-3 btn4" data-disable-with="予約を確定">
+            <p class="btn btn-secondary form-control "><%= link_to("ルーム詳細へ戻る", room_path(@room.id))%></p>
+          <% end %>                
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
