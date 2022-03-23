@@ -44,18 +44,13 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(session[:user_id])
-      if !params[:user][:password].blank? && (params[:user][:password].length > 6)
-        if @user.update(user_params)
-          flash[:success] = "ユーザー情報を更新しました"
-          redirect_to("/")
-        else
-          flash[:failure] = "ユーザー情報を更新できませんでした"
-          render :edit
-        end
-      else
-        flash[:failure] = "パスワードは６文字以上必要です"
-        render :edit
-      end
+    if @user.update(user_params)
+      flash[:success] = "ユーザー情報を更新しました"
+      redirect_to("/")
+    else
+      flash[:failure] = "ユーザー情報を更新できませんでした"
+      render :edit
+    end
   end
 
     
