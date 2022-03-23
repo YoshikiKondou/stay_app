@@ -6,7 +6,7 @@
       <p class="failure"><%= flash[:failure] %></p>
     <% end %>
     <div class="device_inner">
-      <%= form_tag(user_path, {method: :patch, key: 'edit'}) do %>
+      <%= form_tag(user_path, {method: :patch}) do %>
         <input type="hidden" name="_method" value="put">
         <input type="hidden" name="authenticity_token" value="SvgHMiAaeO2QxR2q3//Rler+6kFjpwLHufq0ftx4Ggitw0VX7e6pkZOh61xde/SN/V1pOPe+DryHOrg6+MDWdw==">
         <div class="field">

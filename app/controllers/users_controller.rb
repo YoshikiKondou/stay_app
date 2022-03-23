@@ -44,14 +44,19 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(session[:user_id])
-      if @user.update(user_params)
-        flash[:success] = "ユーザー情報を更新しました"
-        redirect_to("/")
+      if !params[:user][:password].blank? && (params[:user][:password].length > 6)
+        if @user.update(user_params)
+          flash[:success] = "ユーザー情報を更新しました"
+          redirect_to("/")
+        else
+          flash[:failure] = "ユーザー情報を更新できませんでした"
+          render :edit
+        end
       else
-        flash[:failure] = "ユーザー情報を更新できませんでした"
+        flash[:failure] = "パスワードは６文字以上必要です"
         render :edit
       end
-    end
+  end
 
     
 
@@ -61,10 +66,10 @@ class UsersController < ApplicationController
 
   def renewal
     @user = User.find(session[:user_id])
-    @user.image_name = params[:user][:image_name]
-    @user.name = params[:user][:image_name]
+    @user.image_name = params[:user][:image_name] if params[:user][:image_name].present?
+    @user.name = params[:user][:name]
     @user.introduction = params[:user][:introduction]
-    if @user.save
+    if @user.save(validate: false)
       flash[:success] = "ユーザー情報を更新しました"
       redirect_to("/")
     else

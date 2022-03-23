@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   get '/users/acount'
   post '/users/login'
   post '/users/logout'
-  post '/users/renewal'
+  patch '/users/renewal'
   get '/rooms/posts'
   get '/rooms/search'
   resources :users, only: [:create, :edit, :update]
