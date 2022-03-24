@@ -64,11 +64,16 @@ class UsersController < ApplicationController
     @user.image_name = params[:user][:image_name] if params[:user][:image_name].present?
     @user.name = params[:user][:name]
     @user.introduction = params[:user][:introduction]
-    if @user.save(validate: false)
-      flash[:success] = "ユーザー情報を更新しました"
-      redirect_to("/")
+    if @user.image_name.present?
+      if @user.save(validate: false)
+        flash[:success] = "ユーザー情報を更新しました"
+        redirect_to("/")
+      else
+        flash[:failure] = "ユーザー情報を更新できませんでした"
+        render :profile
+      end
     else
-      flash[:failure] = "ユーザー情報を更新できませんでした"
+      flash[:failure] = "画像を入れてください"
       render :profile
     end
   end

@@ -1,4 +1,7 @@
 <%= render 'layouts/shared/error', obj: @user %>
+<% if flash[:failure] %>
+    <p class="failure"><%= flash[:failure] %></p>
+  <% end %>
 <div class="container-fiuld user">
   <div class="row">
     <div class="col-lg-2 user-nav user-nav-pc d-lg-block d-none">
