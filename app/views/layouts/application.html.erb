@@ -5,12 +5,83 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
+    <header class="header">
+      <div class="header-inner">
+        <div class="header-left-nav">
+          <a href="/">
+            <img alt="サイトのロゴ画像" src="/assets/logo.png">
+          </a>
+          <%= form_tag(rooms_search_path, method: :get, local: true) do %>
+            <div class="header-sharch d-lg-inline-block d-none">
+              <input type="text" name="search_area" id="area" value="" class="form-control" placeholder="エリア">
+              <i class="fas fa-map-marker-alt"></i>
+            </div>
+            <div class="header-sharch d-lg-inline-block d-none">
+              <input type="text" name="search_keyword" id="keyword" value="" class="form-control" placeholder="キーワード">
+              <i class="fas fa-search"></i>
+            </div>
+            <input type="submit" class="d-none" data-disable-with="">   
+          <% end %>
+        </div>
+        <% if current_user? %>
+          <div class="header-right-nav">
+             <div class="nav-item d-sm-inline-block"><%= @user.name %></div> 
+            <div class="nav-item">
+              <% if @user.image_name? %> 
+                <%= image_tag @user.image_name.url, class: "mx-3 p-1 host-icon nav-trigger"  %> 
+              <% else %>
+                <img class="mx-3 p-1 host-icon nav-trigger" alt="メニュー" src="s">
+              <% end %> 
+              <ul class="header-nav-menu">
+                <li><%= link_to("ルーム登録", "/rooms/new") %></li>
+                <li><%= link_to("予約済みルーム一覧", "/reservations") %></li>
+                <li><%= link_to("登録済みルーム一覧", "/rooms/posts") %></li>
+                <li><%= link_to("設定", "/users/acount") %></li>
+                <li><%= link_to("ログアウト", "/users/logout", {method: :post}) %></li>
+              </ul>
+            </div>
+          </div>
+        <% else %>
+          <div class="header-right-nav">
+            <div class="nav-item">
+              <p class="btn btn-primary my-2 mx-3">
+                <%= link_to("ログイン", "/users/sign_in") %>
+              </p>
+              <p class="btn btn-secondary">
+                <%= link_to("登録する", "/users/sign_up") %>
+              </p>
+            </div>
+        </div>
+        <% end %>
+      </div>
+    </header>
+    <div class="clearfix">
+    </div>
+    <script>
+      $(function() {
+        $('.nav-trigger').click(function() {
+          $('.header-nav-menu').toggle(1500);
+        })
+      });
+    </script>
+    <footer class="footer">
+      <p>© 2020 POTEPAN.INC.</p>
+      <% if flash[:success] %>
+        <p class="success">
+          <%= flash[:success] %>
+        </p>
+      <% elsif flash[:failure] %>
+        <p class="failure">
+          <%= flash[:failure] %>
+        </p>
+<% end %>
+    </footer>
     <%= yield %>
   </body>
 </html>
